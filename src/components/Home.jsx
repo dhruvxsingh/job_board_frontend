@@ -14,7 +14,7 @@ function Home() {
     >
       <div className="text-center p-8 bg-gray-800 bg-opacity-90 rounded-xl shadow-xl mx-4 w-full max-w-md">
         <h1 className="text-4xl font-bold text-white mb-6">
-          Welcome to AI Resume Screener
+          Welcome to AI Job Board
         </h1>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link 
