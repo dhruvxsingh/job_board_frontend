@@ -14,7 +14,7 @@ function RecruiterDashboard() {
 
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/jobs/");
+      const res = await axios.get(`${API_URL}/jobs/`);
       setJobs(res.data);
     } catch (err) {
       console.error("Error fetching jobs:", err);
@@ -29,7 +29,7 @@ function RecruiterDashboard() {
     }
 
     try {
-      await axios.post("http://localhost:8000/jobs/", {
+      await axios.post(`${API_URL}/jobs/`, {
         title: newJobTitle,
         description: newJobDesc,
       });
@@ -45,7 +45,7 @@ function RecruiterDashboard() {
     setSelectedJobId(jobId);
     try {
       // Replace this URL with your actual API to get candidates by job ID
-      const res = await axios.get(`http://localhost:8000/jobs/${jobId}/candidates/`);
+      const res = await axios.get(`${API_URL}/jobs/${jobId}/candidates/`);
       setCandidates(res.data);
     } catch (err) {
       console.error("Error fetching candidates:", err);

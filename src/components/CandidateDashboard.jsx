@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from '../config/api'; 
 
 function CandidateDashboard() {
   const [jobs, setJobs] = useState([]);
@@ -12,7 +13,7 @@ function CandidateDashboard() {
 
   // Fetch jobs from backend
   useEffect(() => {
-    axios.get("http://localhost:8000/jobs/")
+    axios.get(`${API_URL}/jobs/`)
       .then(response => setJobs(response.data))
       .catch(error => console.error("Error fetching jobs:", error));
   }, []);
@@ -34,15 +35,15 @@ function CandidateDashboard() {
     formData.append("job_id", selectedJob.id);
 
     try {
-      const res = await axios.post("http://localhost:8000/upload/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const res = await axios.post(`${API_URL}/upload/`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
       });
       setResult(res.data);
     } catch (err) {
-      console.error("Error during upload:", err);
-      alert("Failed to process. Is backend running?");
+        console.error("Error during upload:", err);
+        alert("Failed to process. Please try again.");
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
 
